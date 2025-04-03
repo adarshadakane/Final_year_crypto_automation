@@ -1,0 +1,67 @@
+{
+	"name": "CryptoShare",
+	"version": "1.0.0",
+	"description": "A tool that allows you to manage nearly every facet of your finances with an open-source web, mobile, and desktop application, along with a self-hosted RESTful GraphQL API.",
+	"main": "app/server.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "electron app/server.js",
+		"dev": "nodemon --exec electron app/server.js",
+		"pack": "build --dir",
+		"dist": "sudo electron-builder -mwl",
+		"dist-macos": "sudo electron-builder -m --x64 --arm64",
+		"dist-macos-x64": "sudo electron-builder -m --x64",
+		"dist-macos-arm64": "sudo electron-builder -m --arm64",
+		"dist-windows": "electron-builder -w",
+		"dist-linux": "sudo electron-builder -l"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Xtrendence/CryptoShare.git"
+	},
+	"author": "Xtrendence <xtrendence@gmail.com>",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Xtrendence/CryptoShare/issues"
+	},
+	"homepage": "https://github.com/Xtrendence/CryptoShare#readme",
+	"build": {
+		"appId": "com.xtrendence.CryptoShare",
+		"asar": true,
+		"mac": {
+			"category": "public.app-category.finance",
+			"target": [
+				"dmg"
+			],
+			"artifactName": "CryptoShare.${version}.macOS.${arch}.${ext}"
+		},
+		"win": {
+			"target": [
+				"nsis"
+			],
+			"artifactName": "CryptoShare.${version}.Windows.${ext}",
+			"icon": "build/icon.ico"
+		},
+		"linux": {
+			"target": [
+				"AppImage",
+				"deb"
+			],
+			"artifactName": "CryptoShare.${version}.Linux.${ext}"
+		}
+	},
+	"devDependencies": {
+		"electron": "^17.1.0",
+		"electron-builder": "^23.0.3"
+	},
+	"dependencies": {
+		"ejs": "^3.1.6",
+		"electron-localshortcut": "^3.2.1",
+		"electron-store": "^8.0.1",
+		"express": "^4.17.3",
+		"jquery": "^3.6.0",
+		"node-forge": "^1.3.0",
+		"nodemon": "^2.0.15",
+		"sha256": "^0.2.0"
+	}
+}

@@ -1,0 +1,22 @@
+node_modules
+.idea
+*.hprof
+mobile/key.txt
+desktop/dist
+api/data/*
+.DS_Store
+# Ignore Terraform state files
+*.tfstate
+*.tfstate.backup
+*.tfvars
+
+# Ignore Terraform provider-specific files
+.terraform/
+.terraform.lock.hcl
+
+# Ignore crash logs
+crash.log
+crash.*
+
+# Ignore plan output files
+terraform.tfplan
