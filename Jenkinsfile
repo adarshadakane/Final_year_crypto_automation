@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = 'xtrendence/cryptoshare'
-        CONTAINER_NAME = 'cryptoshare_container'
+        // IMAGE_NAME = 'xtrendence/cryptoshare'
+        // CONTAINER_NAME = 'cryptoshare_container'
         // SONARQUBE_CONTAINER = 'sonarqube_server'
         // SONARQUBE_PORT = '9000'
         PROJECT_PORT = '3190'
@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Checkout SCM') {
             steps {
-                git branch: 'main', url: 'https://github.com/Xtrendence/CryptoShare.git'
+                git branch: 'main', url: 'https://github.com/adarshadakane/Final_year_crypto_automation.git'
             }
         }
 
@@ -53,13 +53,13 @@ pipeline {
             }
         }
         
-        stage('Build and Push Docker Image') {  // Renamed stage
-            steps {
-                script {
-                    sh "docker pull ${IMAGE_NAME}"
-                }
-            }
-        }
+        // stage('Build and Push Docker Image') {  // Renamed stage
+        //     steps {
+        //         script {
+        //             sh "docker pull ${IMAGE_NAME}"
+        //         }
+        //     }
+        // }
 
         // stage('Stop Existing Container') {
         //     steps {
