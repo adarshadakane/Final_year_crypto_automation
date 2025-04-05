@@ -76,37 +76,23 @@ pipeline {
         //     }
         // }
 
-        stage("Build & Push Docker Image") {
-             steps {
-                 script {
-                     // docker.withRegistry('',DOCKER_PASS) {
-                     //     docker_image = docker.build "${IMAGE_NAME}"
-                     // }
-                     docker.withRegistry('',DOCKER_PASS) {
-                         docker_image.push("${IMAGE_TAG}")
-                         docker_image.push('latest')
-                     }
-                 }
-             }
-         }
+        
 
-        // stage("Push Image to DockerHub")
-        //  {
-        //     steps
-        //     {
-        //         script
-        //         {
-
-        //             withCredentials([string(credentialsId: 'DockerHubPasswd', variable: 'passwd')]) 
-        //             {
-        //                 sh 'docker login -u  adarshadakane -p $passwd'
-        //                 sh 'docker push adarshadakane/newbuild:$BUILD_NUMBER'
-                        
-        //             }
-        //         }
+        stage("Push Image to DockerHub")
+         {
+            steps
+            {
+                script
+                {
+                        withCredentials([string(credentialsId: 'DockerHub-Passwd', variable: 'DockerHubPasswd')]) {
+                                sh 'docker login -u  adarshadakane -p $DockerHubPasswd'
+                               sh 'docker push adarshadakane/newbuild:$BUILD_NUMBER'
+                            }
+                    
+                }
                 
-        //     }
-        // }
+            }
+        }
 
 
 
