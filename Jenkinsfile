@@ -3,14 +3,13 @@ pipeline {
 
     environment {
         // IMAGE_NAME = 'xtrendence/cryptoshare'
-        // CONTAINER_NAME = 'cryptoshare_container'
+        // // CONTAINER_NAME = 'cryptoshare_container'
+        IMAGE_NAME = 'adarshadakane/newbuild'
+        CONTAINER_NAME = 'newbuild'
         // SONARQUBE_CONTAINER = 'sonarqube_server'
         // SONARQUBE_PORT = '9000'
         PROJECT_PORT = '3190'
-        DOCKER_USER = "adarshadakane"
-        DOCKER_PASS = 'dockerhub'
-        IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
-        IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+        
         // SONARQUBE_URL = 'http://localhost:9000'
     }
 
@@ -98,13 +97,13 @@ pipeline {
 
 
         
-        // stage('Run Docker Container') {
-        //     steps {
-        //         script {
-        //             sh "docker run -d --name ${CONTAINER_NAME} -p ${PROJECT_PORT}:${PROJECT_PORT} ${IMAGE_NAME}"
-        //         }
-        //     }
-        // }
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    sh "docker run -d --name ${CONTAINER_NAME} -p ${PROJECT_PORT}:${PROJECT_PORT} ${IMAGE_NAME}:$BUILD_NUMBER"
+                }
+            }
+        }
 
 
 
