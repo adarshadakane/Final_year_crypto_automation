@@ -2,8 +2,7 @@ pipeline {
     agent any
 
     environment {
-        // IMAGE_NAME = 'xtrendence/cryptoshare'
-        // // CONTAINER_NAME = 'cryptoshare_container'
+
         IMAGE_NAME = 'adarshadakane/newbuild'
         CONTAINER_NAME = 'newbuild'
         // SONARQUBE_CONTAINER = 'sonarqube_server'
