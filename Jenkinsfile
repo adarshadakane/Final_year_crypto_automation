@@ -7,6 +7,8 @@ pipeline {
         // SONARQUBE_CONTAINER = 'sonarqube_server'
         // SONARQUBE_PORT = '9000'
         PROJECT_PORT = '3190'
+        DOCKER_USER = "adarshadakane"
+        DOCKER_PASS = 'dockerhub'
         // SONARQUBE_URL = 'http://localhost:9000'
     }
 
