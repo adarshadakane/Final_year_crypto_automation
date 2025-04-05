@@ -72,13 +72,31 @@ pipeline {
         //     }
         // }
 
-        stage('Run Docker Container') {
-            steps {
-                script {
-                    sh "docker run -d --name ${CONTAINER_NAME} -p ${PROJECT_PORT}:${PROJECT_PORT} ${IMAGE_NAME}"
+        stage("Push Image to DockerHub")
+         {
+            steps
+            {
+                script
+                {
+
+                    withCredentials([string(credentialsId: 'DockerHubPasswd', variable: 'passwd')]) 
+                    {
+                        sh 'docker login -u  adarshadakane -p $passwd'
+                        sh 'docker push adarshadakane/newbuild:$BUILD_NUMBER'
+                        
+                    }
                 }
+                
             }
         }
+
+        // stage('Run Docker Container') {
+        //     steps {
+        //         script {
+        //             sh "docker run -d --name ${CONTAINER_NAME} -p ${PROJECT_PORT}:${PROJECT_PORT} ${IMAGE_NAME}"
+        //         }
+        //     }
+        // }
 
         // stage('Show EC2 Public DNS') {
         //     steps {
