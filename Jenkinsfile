@@ -24,7 +24,7 @@ pipeline {
             steps {
              withSonarQubeEnv('SonarQube-Server') {
                 sh '''
-                sonar-scanner \
+                 ${SCANNER_HOME}/bin/sonar-scanner \
                 -Dsonar.projectKey=Crypto \
                 -Dsonar.sources=. \
                 -Dsonar.host.url=http://13.127.106.180:9000 \
