@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-
+        SCANNER_HOME = tool 'sonar-scanner'
         IMAGE_NAME = 'adarshadakane/newbuild'
         CONTAINER_NAME = 'newbuild'
         // SONARQUBE_CONTAINER = 'sonarqube_server'
@@ -13,39 +13,42 @@ pipeline {
     }
 
     stages {
-        stage('Checkout SCM') {
+        stage('Checkout from Git') {
             steps {
                 git branch: 'main', url: 'https://github.com/adarshadakane/Final_year_crypto_automation.git'
             }
         }
 
-    //   stage('Sonaqube Analysis ')  {
-    //         // We have to configure sonar cube server on timestamp 1:08:15 in the video  
-    //         steps{
-                
-    //             script{
-                    
-    //                 withSonarQubeEnv(credentialsId : 'sonar') {
-                        
-    //                     sh 'mvn clean package sonar:sonar'
-    //                 }
-    //             }
-                    
-    //         }
-    //     }
 
-        // stage('SonarQube Analysis') {
-        //     steps {
-        //         script {
-        //             withSonarQubeEnv('SonarQube') {
-        //                 sh """
-        //                 until curl -s ${SONARQUBE_URL} >/dev/null; do echo "Waiting for SonarQube..."; sleep 5; done
-        //                 sonar-scanner -Dsonar.projectKey=CryptoShare -Dsonar.sources=. -Dsonar.host.url=${SONARQUBE_URL}
-        //                 """
-        //             }
-        //         }
-        //     }
-        // }
+        stage("Sonarqube Analysis") {
+            steps {
+             withSonarQubeEnv('SonarQube-Server') {
+                sh '''
+                sonar-scanner \
+                -Dsonar.projectKey=Crypto \
+                -Dsonar.sources=. \
+                -Dsonar.host.url=http://13.127.106.180:9000 \
+                -Dsonar.login=sqp_f91f0899bc4d9cf046f607d8cd1b0b147b30ae53
+                    '''
+                }
+            }
+        }
+
+        stage("Quality Gate") {
+            steps {
+                script {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'SonarQube-Token'
+                }
+            }
+        }
+
+        stage('TRIVY FS SCAN') {
+            steps {
+                sh "trivy fs . > trivyfs.txt"
+             }
+         }
+
+    
         stage("Docker Image Build")
         {
             steps
