@@ -19,20 +19,20 @@ pipeline {
             }
         }
 
-
-        stage("Sonarqube Analysis") {
-            steps {
-             withSonarQubeEnv('SonarQube-Server') {
-                sh '''
-                 ${SCANNER_HOME}/bin/sonar-scanner \
-                -Dsonar.projectKey=Crypto \
-                -Dsonar.sources=. \
-                -Dsonar.host.url=http://13.127.106.180:9000 \
-                -Dsonar.login=sqp_f91f0899bc4d9cf046f607d8cd1b0b147b30ae53
-                    '''
+                stage("Sonarqube Analysis") {
+                    steps {
+                        withSonarQubeEnv('SonarQube-Server') {
+                            sh '''
+                                ${SCANNER_HOME}/bin/sonar-scanner \
+                                -Dsonar.projectKey=crypto \
+                                -Dsonar.sources=. \
+                                -Dsonar.host.url=http://43.205.206.108:9000 \
+                                -Dsonar.login=sqp_1a0dfbb2489ac552dfade28010af43ce9878367a
+                            '''
+                        }
+                    }
                 }
-            }
-        }
+
 
         // stage("Quality Gate") {
         //     steps {
