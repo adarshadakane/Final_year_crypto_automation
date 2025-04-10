@@ -96,6 +96,17 @@ pipeline {
             }
         }
 
+         stage('Clean Existing Container') {
+            steps {
+                script {
+                    sh """
+                        echo "Stopping and removing existing container if exists..."
+                        docker ps -q --filter "name=${CONTAINER_NAME}" | grep -q . && docker stop ${CONTAINER_NAME} || true
+                        docker ps -a -q --filter "name=${CONTAINER_NAME}" | grep -q . && docker rm ${CONTAINER_NAME} || true
+                    """
+                }
+            }
+        }
 
 
 
