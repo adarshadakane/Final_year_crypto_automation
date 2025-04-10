@@ -115,7 +115,7 @@ async function accountSetup() {
         case 3:
           popup.setOptions({ confirmText: "Finish" });
           popup.setHTML(
-            `<span>If you aren't hosting Crypto Share yourself, please be aware that whoever is hosting it can modify the code to steal your financial data, so make sure you trust them.</span>`
+            `<span>If you aren't hosting Crypto Website yourself, please be aware that whoever is hosting it can modify the code to steal your financial data, so make sure you trust them.</span>`
           );
           popup.setSize(460, "auto");
           popup.updateHeight();
