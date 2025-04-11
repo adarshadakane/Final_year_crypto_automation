@@ -26,12 +26,13 @@ pipeline {
                                 ${SCANNER_HOME}/bin/sonar-scanner \
                                 -Dsonar.projectKey=Crypto \
   				-Dsonar.sources=. \
-  				-Dsonar.host.url=http://13.233.134.244:9000 \
- 			        -Dsonar.login=sqp_75fe09de83000d259440fd55519544cbb836824c
+ 				 -Dsonar.host.url=http://43.205.128.176:9000 \
+ 				 -Dsonar.login=sqp_81e6daf71d74c3379355937b7ff7fce4aad3cd0d
                             '''
                         }
                     }
                 }
+
 
 
 
