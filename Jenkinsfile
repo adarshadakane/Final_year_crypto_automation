@@ -25,10 +25,10 @@ pipeline {
                         withSonarQubeEnv('SonarQube-Server') {
                             sh '''
                                 ${SCANNER_HOME}/bin/sonar-scanner \
-                                 -Dsonar.projectKey=Crypto \
-  				 -Dsonar.sources=. \
- 				 -Dsonar.host.url=http://13.200.255.50:9000 \
- 				 -Dsonar.login=sqp_045be3fa4efa16e8765a16ff3b15b3c0d3f14331
+                                -Dsonar.projectKey=Crypto \
+  				-Dsonar.sources=. \
+ 				-Dsonar.host.url=http://65.0.76.89:9000 \
+ 				-Dsonar.login=sqp_ff05ada0da0d5c71ddf2fbfe4e4e0a89585c94e7
                             '''
                         }
                     }
