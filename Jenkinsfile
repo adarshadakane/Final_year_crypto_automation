@@ -20,15 +20,15 @@ pipeline {
         }
 
               
-          stage("Sonarqube Analysis") {
+         stage("Sonarqube Analysis") {
                     steps {
                         withSonarQubeEnv('SonarQube-Server') {
                             sh '''
                                 ${SCANNER_HOME}/bin/sonar-scanner \
                                 -Dsonar.projectKey=Crypto \
-  				-Dsonar.sources=. \
-  				-Dsonar.host.url=http://3.110.164.144:9000 \
-  				-Dsonar.login=sqp_dd5444970a465d86eb83fad2390392f99954acf9
+				-Dsonar.sources=. \
+ 				-Dsonar.host.url=http://13.127.53.56:9000 \
+ 				-Dsonar.login=sqp_7c9f609847c5185314cc3a35b35e8357fdd4bcbd
 
                             '''
                         }
