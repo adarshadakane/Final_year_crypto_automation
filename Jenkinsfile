@@ -26,15 +26,14 @@ pipeline {
                             sh '''
                                 ${SCANNER_HOME}/bin/sonar-scanner \
                                 -Dsonar.projectKey=Crypto \
-				-Dsonar.sources=. \
- 				-Dsonar.host.url=http://13.127.53.56:9000 \
- 				-Dsonar.login=sqp_7c9f609847c5185314cc3a35b35e8357fdd4bcbd
+  				-Dsonar.sources=. \
+ 				 -Dsonar.host.url=http://13.201.130.230:9000 \
+ 				 -Dsonar.login=sqp_1f3368da32f5b93f999ae609957f84e00ffcd377
 
                             '''
                         }
                     }
                 }
-
 
         // stage("Quality Gate") {
         //     steps {
